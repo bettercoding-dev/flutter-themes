@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // THEME PROVIDERS
 final theme = Provider((ref) => _theme);
 final darkTheme = Provider((ref) => _darkTheme);
+final themeMode = StateProvider((ref) => ThemeMode.light);
 
 // THEMES
 // light
@@ -47,6 +48,11 @@ final _customDarkTheme = CustomThemeData();
 
 // EXTENSIONS AND CLASSES
 extension CustomTheme on ThemeData {
+  AssetImage imageForName(String name) {
+    final path = brightness == Brightness.dark ? 'assets/dark' : 'assets/';
+    return AssetImage('$path/$name');
+  }
+
   CustomThemeData get custom => brightness == Brightness.dark ? _customDarkTheme : _customTheme;
 }
 
